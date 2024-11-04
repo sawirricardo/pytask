@@ -1,6 +1,7 @@
 import sys
 import json
 from enum import Enum
+from datetime import datetime
 def main():
     data = []
     try:
@@ -49,6 +50,8 @@ def mark_done():
         "id": task['id'],
         "name": task['name'],
         "status": TaskStatus.DONE.value,
+        "created_at": task['created_at'],
+        'updated_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     with open('data.json', 'w') as f:
         json.dump(data + [input_data], f, ensure_ascii=False, indent=4)
@@ -80,6 +83,8 @@ def mark_doing():
         "id": task['id'],
         "name": task['name'],
         "status": TaskStatus.DOING.value,
+        "created_at": task['created_at'],
+        'updated_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     with open('data.json', 'w') as f:
         json.dump(data + [input_data], f, ensure_ascii=False, indent=4)
@@ -107,6 +112,8 @@ def add():
         "id": id,
         "name": task,
         "status": 0,
+        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     with open('data.json', 'w') as f:
         json.dump(data + [input_data], f, ensure_ascii=False, indent=4)
@@ -166,6 +173,8 @@ def update():
         "id": task['id'],
         "name": task_name,
         "status": task['status'],
+        "created_at": task['created_at'],
+        'updated_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     with open('data.json', 'w') as f:
         json.dump(data + [input_data], f, ensure_ascii=False, indent=4)
